@@ -1,0 +1,221 @@
+:root {
+    --primary-color: #2E8B57; /* Medium Sea Green - Medium Dark Green */
+    --secondary-color: #F0FFF4; /* Honeydew - Very light green for backgrounds */
+    --text-color: #333333;
+    --white: #FFFFFF;
+    --accent-color: #3CB371;
+    --warning-color: #E74C3C;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--white);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Authentication Pages */
+.auth-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+}
+
+/* Sidebar Layout for Main App */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.sidebar a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 24px;
+    margin: 20px 0;
+    display: block;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    opacity: 0.8;
+}
+
+.main-content {
+    margin-left: 80px;
+    flex: 1;
+    padding: 30px;
+    background-color: var(--white);
+}
+
+/* Crop Guide Cards */
+.crop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.crop-card {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.crop-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Chatbot */
+.chat-interface {
+    display: flex;
+    height: 80vh;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-history {
+    width: 250px;
+    background-color: var(--secondary-color);
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+.chat-input-area {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-input-area input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 70%;
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: var(--white);
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.bot-message {
+    background-color: #f1f1f1;
+    color: var(--text-color);
+    align-self: flex-start;
+}
+
+/* IoT Dashboard */
+.iot-widgets {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.widget {
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.widget h3 {
+    margin-top: 0;
+}
+
+.value {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.warning {
+    color: var(--warning-color);
+    font-weight: bold;
+    border-color: var(--warning-color);
+}

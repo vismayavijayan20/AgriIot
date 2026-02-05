@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ crop_name }} - {{ get_text('crop_guide') }}{% endblock %}
+
+{% block content %}
+<h1>{{ crop_name }} {{ get_text('crop_guide') }}</h1>
+<a href="{{ url_for('home') }}" class="btn" style="width: auto; margin-bottom: 20px;">{{ get_text('back_guide') }}</a>
+
+<div
+    style="background-color: var(--secondary-color); padding: 20px; border-radius: 10px; border: 1px solid var(--primary-color);">
+    <h3>{{ get_text('soil_type') }}</h3>
+    <p>{{ data.soil }}</p>
+
+    <h3>{{ get_text('temperature') }}</h3>
+    <p>{{ data.temp }}</p>
+
+    <h3>{{ get_text('suitable_area') }}</h3>
+    <p>{{ data.area }}</p>
+
+    <h3>{{ get_text('fertilizers') }}</h3>
+    <p>{{ data.fertilizer }}</p>
+</div>
+{% endblock %}

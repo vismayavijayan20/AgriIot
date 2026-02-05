@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}{{ get_text('home') }} - {{ get_text('crop_guide') }}{% endblock %}
+
+{% block content %}
+<h1>{{ get_text('crop_guide') }}</h1>
+<p>{{ get_text('select_crop') }}</p>
+
+<div class="crop-grid">
+  <div class="crop-card" onclick="window.location.href='{{ url_for('crop_detail', crop_name='Papaya') }}'">
+    <i class="fas fa-seedling fa-3x" style="color: var(--primary-color);"></i>
+    <h3>{{ get_text('papaya') }}</h3>
+  </div>
+  <div class="crop-card" onclick="window.location.href='{{ url_for('crop_detail', crop_name='Pepper') }}'">
+    <i class="fas fa-pepper-hot fa-3x" style="color: var(--primary-color);"></i>
+    <h3>{{ get_text('pepper') }}</h3>
+  </div>
+  <div class="crop-card" onclick="window.location.href='{{ url_for('crop_detail', crop_name='Tomato') }}'">
+    <i class="fas fa-carrot fa-3x" style="color: var(--primary-color);"></i>
+    <!-- FontAwesome 5 Free doesn't have tomato free, using generic or carrot for now, or apple-alt -->
+    <h3>{{ get_text('tomato') }}</h3>
+  </div>
+  <div class="crop-card" onclick="window.location.href='{{ url_for('crop_detail', crop_name='Paddy') }}'">
+    <i class="fas fa-spa fa-3x" style="color: var(--primary-color);"></i>
+    <h3>{{ get_text('paddy') }}</h3>
+  </div>
+  <div class="crop-card" onclick="window.location.href='{{ url_for('crop_detail', crop_name='Potato') }}'">
+    <i class="fas fa-cookie fa-3x" style="color: var(--primary-color);"></i>
+    <!-- Potato is elusive in free set, using cookie as round object or similar -->
+    <h3>{{ get_text('potato') }}</h3>
+  </div>
+</div>
+{% endblock %}

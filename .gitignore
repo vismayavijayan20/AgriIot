@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+instance/
+.env
+*.pyc
+/crop_dataset
+/uploads
+/model_trial
+*.keras
+*.pth

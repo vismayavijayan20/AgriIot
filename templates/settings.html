@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ get_text('settings') }}{% endblock %}
+
+{% block content %}
+<h1>{{ get_text('settings') }}</h1>
+
+<div style="max-width: 600px;">
+    <div class="auth-container" style="margin: 0; text-align: left; width: 100%; max-width: 100%;">
+        <h2>{{ get_text('account_info') }}</h2>
+        <form method="POST" action="{{ url_for('settings') }}">
+            <label>{{ get_text('name') }}</label>
+            <input type="text" value="{{ current_user.name }}" readonly>
+
+            <label>{{ get_text('email') }}</label>
+            <input type="email" value="{{ current_user.email }}" readonly>
+
+            <label>City</label>
+            <input type="text" name="city" value="{{ current_user.city or '' }}" placeholder="Enter your city (e.g. Kochi)">
+
+            <label>{{ get_text('new_password') }}</label>
+            <input type="password" name="password" placeholder="Leave blank to keep current">
+
+            <button type="submit" class="btn">{{ get_text('update_profile') }}</button>
+        </form>
+    </div>
+
+    <div class="auth-container" style="margin: 20px 0; text-align: left; width: 100%; max-width: 100%;">
+        <h2>{{ get_text('preferences') }}</h2>
+        <label>{{ get_text('language') }}</label>
+        <div style="margin: 10px 0;">
+            <a href="{{ url_for('set_language', lang='en') }}" class="btn"
+                style="width: auto; background-color: {{ 'var(--accent-color)' if current_user.language_pref == 'en' else 'var(--primary-color)' }};">English</a>
+            <a href="{{ url_for('set_language', lang='ml') }}" class="btn"
+                style="width: auto; background-color: {{ 'var(--accent-color)' if current_user.language_pref == 'ml' else 'var(--primary-color)' }};">Malayalam</a>
+        </div>
+    </div>
+
+    <div class="auth-container" style="margin: 20px 0; text-align: left; width: 100%; max-width: 100%;">
+        <h2>{{ get_text('contact_us') }}</h2>
+        <p>{{ get_text('contact_text') }}</p>
+        <p><strong>{{ get_text('email') }}:</strong> developer@plantdiseaseapp.com</p>
+        <button class="btn" onclick="window.location.href='mailto:developer@plantdiseaseapp.com'">{{
+            get_text('send_email') }}</button>
+    </div>
+</div>
+{% endblock %}

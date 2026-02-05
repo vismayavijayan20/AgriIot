@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriIoT | Intelligent Crop Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i>
+                <span>AgriIoT</span>
+            </div>
+            <div>
+                <!-- Optional: Add Nav Links here -->
+            </div>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>AI-Powered Crop Doctor</h1>
+            <p>Upload a photo of your crop to instantly detect diseases and get expert treatment advice.</p>
+        </section>
+
+        <!-- Upload Section -->
+        {% if not result %}
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="upload-card">
+                <input type="file" name="image" id="imageUpload" class="file-input" accept="image/*" required>
+                <div class="upload-content">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <h3 class="upload-text">Drop your image here or click to browse</h3>
+                    <p style="color: #999; font-size: 0.9rem;">Supports: JPG, PNG, JPEG</p>
+                </div>
+                <img id="imagePreview" alt="Image Preview">
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <button type="submit" class="btn-upload">
+                    <i class="fa-solid fa-microscope"></i> Analyze Crop
+                </button>
+            </div>
+            
+            <div id="loader" class="loader"></div>
+        </form>
+        {% endif %}
+
+        <!-- Error Message -->
+        {% if error %}
+        <div style="background: #fee2e2; color: #dc2626; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ error }}
+            <br>
+            <a href="/" style="color: #dc2626; text-decoration: underline; font-weight: 600;">Try Again</a>
+        </div>
+        {% endif %}
+
+        <!-- Results Section -->
+        {% if result %}
+        <div class="results-container">
+            
+            <!-- Result Header -->
+            <div class="result-header">
+                <div class="result-image">
+                    <img src="{{ url_for('uploaded_file', filename=result.image_path) }}" alt="Analyzed Crop">
+                </div>
+                <div class="result-meta">
+                    <div class="confidence-badge">
+                        <i class="fa-solid fa-check-circle"></i> {{ result.confidence }}% Confidence
+                    </div>
+                    <h2>{{ result.prediction }}</h2>
+                    <p>
+                        <span style="color: #666;">Type: </span>
+                        <strong>{{ result.info.disease_type }}</strong>
+                    </p>
+                    <a href="/" class="btn-upload" style="background: var(--secondary); margin-top: 1rem; display: inline-block; font-size: 0.9rem; padding: 0.5rem 1.5rem; text-decoration: none;">
+                        <i class="fa-solid fa-arrow-left"></i> Test Another
+                    </a>
+                </div>
+            </div>
+
+            <!-- Treatment info -->
+            <div class="info-grid">
+                
+                <!-- Treatment Card -->
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-briefcase-medical" style="color: #e11d48;"></i> Treatments</h3>
+                    <ul>
+                        {% for item in result.info.treatment %}
+                        <li>{{ item }}</li>
+                        {% else %}
+                        <li>No specific treatment data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Preventive Measure Card -->
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-shield-virus" style="color: #2563eb;"></i> Prevention</h3>
+                    <ul>
+                        {% for item in result.info.preventive_measures %}
+                        <li>{{ item }}</li>
+                        {% else %}
+                        <li>No specific prevention data available.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Crop Details Card (Optional) -->
+                {% if result.info.crop %}
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-seedling" style="color: #16a34a;"></i> Crop Details</h3>
+                    <p><b>Target Crop:</b> {{ result.info.crop }}</p>
+                    <p><b>Identified Disease:</b> {{ result.info.disease }}</p>
+                    {% if result.info.recommended_measures and result.info.recommended_measures[0] != 'nan' %}
+                    <p style="margin-top:0.5rem"><b>Recommended:</b> {{ result.info.recommended_measures[0] }}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+            </div>
+        </div>
+        {% endif %}
+
+    </main>
+
+    <footer>
+        <p>© 2026 AgriIoT Project. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

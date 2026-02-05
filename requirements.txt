@@ -1,0 +1,10 @@
+flask
+tensorflow
+numpy
+pillow
+requests
+flask-login
+flask-sqlalchemy
+openai
+google-generativeai
+python-dotenv

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ get_text('iot') }}{% endblock %}
+
+{% block content %}
+<h1>{{ get_text('iot_title') }}</h1>
+
+<h2>{{ get_text('weather_data') }} <span id="weather-city"></span></h2>
+<div class="iot-widgets">
+    <div class="iot-widgets">
+        <div class="widget">
+            <h3>{{ get_text('temperature') }}</h3>
+            <div class="value" id="weather-temp">--°C</div>
+            <p id="weather-desc">Loading...</p>
+        </div>
+        <div class="widget">
+            <h3>{{ get_text('humidity') }}</h3>
+            <div class="value" id="weather-hum">--%</div>
+            <p>{{ get_text('humidity') }}</p>
+        </div>
+    </div>
+
+    <h2>{{ get_text('field_sensors') }}</h2>
+    <div class="iot-widgets">
+        <div class="widget warning">
+            <h3>{{ get_text('soil_moisture') }}</h3>
+            <div class="value">15%</div>
+            <p style="color: var(--warning-color);">LOW - Irrigation Needed!</p>
+        </div>
+        <div class="widget">
+            <h3>{{ get_text('field_temp') }}</h3>
+            <div class="value">29°C</div>
+            <p>Optimal</p>
+        </div>
+    </div>
+
+    <script>
+        // Fetch Weather Data from Backend
+        fetch('/api/get_weather')
+            .then(response => response.json())
+            .then(data => {
+                if (data.temp !== '--') {
+                    document.getElementById('weather-temp').innerText = data.temp + '°C';
+                    document.getElementById('weather-hum').innerText = data.humidity + '%';
+                    document.getElementById('weather-desc').innerText = data.desc;
+                    if (data.city) document.getElementById('weather-city').innerText = 'in ' + data.city;
+                } else if (data.error) {
+                    document.getElementById('weather-desc').innerText = data.error;
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching weather:', err);
+                document.getElementById('weather-desc').innerText = "Connection Error";
+            });
+    </script>
+    {% endblock %}

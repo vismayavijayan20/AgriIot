@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+
+{% block title %}{{ get_text('chat_title') }}{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>{{ get_text('chat_title') }}</h1>
+</div>
+
+<div class="chat-interface">
+    <div class="chat-history">
+        <h3>History</h3> <!-- Keeping history static for now as it's just a mock list -->
+        <p>Today</p>
+        <ul>
+            <li>Tomato Blight...</li>
+            <li>Yellow leaves...</li>
+        </ul>
+    </div>
+    <div class="chat-window">
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">{{ get_text('chat_welcome') }}</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="file" id="image-upload" style="display: none;" accept="image/*"
+                onchange="handleImageUpload(this)">
+            <button title="Camera" onclick="openCamera()"><i class="fas fa-camera"></i></button>
+            <button title="Upload Image" onclick="document.getElementById('image-upload').click()"><i
+                    class="fas fa-image"></i></button>
+            <input type="text" placeholder="{{ get_text('type_message') }}" id="message-input">
+            <button title="Voice Input" onclick="startVoiceInput()"><i class="fas fa-microphone"></i></button>
+            <button title="Send" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Event listener for Enter key
+    document.getElementById('message-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const input = document.getElementById('message-input');
+        const text = input.value;
+        if (text.trim() === '') return;
+
+        displayMessage(text, 'user-message');
+        input.value = '';
+
+        // Call Backend API
+        fetch('/api/chat_response', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        })
+            .then(response => response.json())
+            .then(data => {
+                displayMessage(data.response, 'bot-message');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                displayMessage("Sorry, I'm having trouble connecting to the server.", 'bot-message');
+            });
+    }
+
+    function displayMessage(text, className) {
+        const messagesDiv = document.getElementById('chat-messages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${className}`;
+        msgDiv.textContent = text;
+        msgDiv.style.whiteSpace = 'pre-wrap'; // Preserve newlines
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function handleImageUpload(input) {
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const fileName = file.name;
+            displayMessage(`[Image Uploaded: ${fileName}]`, 'user-message');
+
+            // Show processing message
+            const loadingMsgDiv = document.createElement('div');
+            loadingMsgDiv.className = 'message bot-message';
+            loadingMsgDiv.innerText = "Processing image...";
+            document.getElementById('chat-messages').appendChild(loadingMsgDiv);
+
+            // Send to backend
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('/api/predict', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    loadingMsgDiv.remove(); // Remove loading message
+                    if (data.error) {
+                        displayMessage(`Error: ${data.error}`, 'bot-message');
+                    } else {
+                        let resultText = `Analysis Result:\nDisease: ${data.prediction}\nConfidence: ${data.confidence}\nTreatment: ${data.info.treatment ? data.info.treatment[0] : 'Consult expert'}`;
+
+                        if (data.info.preventive_measures && data.info.preventive_measures.length > 0) {
+                            resultText += `\n\nPreventive Measures:\n- ${data.info.preventive_measures.join('\n- ')}`;
+                        }
+
+                        if (data.formatted_result) {
+                            displayMessage(data.formatted_result, 'bot-message');
+                        } else {
+                            displayMessage(resultText, 'bot-message');
+                        }
+                    }
+                })
+                .catch(error => {
+                    loadingMsgDiv.remove();
+                    console.error('Error:', error);
+                    displayMessage("Error uploading image.", 'bot-message');
+                });
+        }
+    }
+
+    // Camera Variables
+    let videoStream = null;
+    let videoElement = null;
+
+    function openCamera() {
+        if (videoStream) {
+            stopCamera();
+            return;
+        }
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Camera API not supported in this browser.");
+            return;
+        }
+
+        const messagesDiv = document.getElementById('chat-messages');
+        const cameraContainer = document.createElement('div');
+        cameraContainer.id = 'camera-container';
+        cameraContainer.className = 'message bot-message';
+        cameraContainer.style.textAlign = 'center';
+
+        videoElement = document.createElement('video');
+        videoElement.autoplay = true;
+        videoElement.style.width = '100%';
+        videoElement.style.maxWidth = '300px';
+        videoElement.style.borderRadius = '8px';
+
+        const captureBtn = document.createElement('button');
+        captureBtn.innerText = "Capture Photo";
+        captureBtn.className = "btn";
+        captureBtn.style.marginTop = '10px';
+        captureBtn.onclick = capturePhoto;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.innerText = "Cancel";
+        closeBtn.style.marginLeft = '10px';
+        closeBtn.onclick = stopCamera;
+
+        cameraContainer.appendChild(videoElement);
+        cameraContainer.appendChild(document.createElement('br'));
+        cameraContainer.appendChild(captureBtn);
+        cameraContainer.appendChild(closeBtn);
+        messagesDiv.appendChild(cameraContainer);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                videoStream = stream;
+                videoElement.srcObject = stream;
+            })
+            .catch(function (err) {
+                console.error("Camera error:", err);
+                cameraContainer.remove();
+                alert("Could not access camera.");
+            });
+    }
+
+    function stopCamera() {
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            videoStream = null;
+        }
+        const container = document.getElementById('camera-container');
+        if (container) container.remove();
+        videoElement = null;
+    }
+
+    function capturePhoto() {
+        if (!videoElement) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(blob => {
+            const file = new File([blob], "camera_capture.png", { type: "image/png" });
+
+            // Display captured image
+            const messagesDiv = document.getElementById('chat-messages');
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'message user-message';
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(blob);
+            img.style.maxWidth = '200px';
+            img.style.borderRadius = '8px';
+            userMsgDiv.appendChild(img);
+            messagesDiv.appendChild(userMsgDiv);
+
+            stopCamera();
+
+            // Send to backend (Reuse logic)
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const loadingMsgDiv = document.createElement('div');
+            loadingMsgDiv.className = 'message bot-message';
+            loadingMsgDiv.innerText = "Analyzing photo...";
+            messagesDiv.appendChild(loadingMsgDiv);
+
+            fetch('/api/predict', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    loadingMsgDiv.remove();
+                    if (data.error) {
+                        displayMessage(`Error: ${data.error}`, 'bot-message');
+                    } else {
+                        let resultText = `Analysis Result:\nDisease: ${data.prediction}\nConfidence: ${data.confidence}\nTreatment: ${data.info.treatment ? data.info.treatment[0] : 'Consult expert'}`;
+
+                        if (data.info.preventive_measures && data.info.preventive_measures.length > 0) {
+                            resultText += `\n\nPreventive Measures:\n- ${data.info.preventive_measures.join('\n- ')}`;
+                        }
+
+                        displayMessage(resultText, 'bot-message');
+                    }
+                })
+                .catch(error => {
+                    loadingMsgDiv.remove();
+                    displayMessage("Error analyzing photo.", 'bot-message');
+                });
+        }, 'image/png');
+    }
+
+    function startVoiceInput() {
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            alert("Your browser does not support voice input. Please try Chrome or Edge.");
+            return;
+        }
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = 'en-US'; // Default to English
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        // Visual feedback
+        const voiceBtn = document.querySelector('button[title="Voice Input"] i');
+        const originalIcon = voiceBtn.className;
+        voiceBtn.className = "fas fa-spinner fa-spin"; // Show loading/listening state
+
+        recognition.start();
+
+        recognition.onresult = function (event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('message-input').value = transcript;
+            // Optional: Auto-send
+            // sendMessage();
+        };
+
+        recognition.onspeechend = function () {
+            recognition.stop();
+            voiceBtn.className = originalIcon;
+        };
+
+        recognition.onerror = function (event) {
+            console.error('Speech recognition error', event.error);
+            voiceBtn.className = originalIcon;
+
+            if (event.error === 'no-speech') {
+                alert("No speech was detected. Please try again and speak closer to the microphone.");
+            } else if (event.error === 'audio-capture') {
+                alert("No microphone was found. Ensure that a microphone is installed and that microphone settings are configured correctly.");
+            } else if (event.error === 'not-allowed') {
+                alert("Permission to use microphone is blocked. Please allow access in browser settings.");
+            } else {
+                alert("Voice recognition failed: " + event.error);
+            }
+        };
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,591 @@
+{
+  "Paddy_Bacterial_Leaf_Blight": {
+    "crop": "Paddy",
+    "disease": "Bacterial Leaf Blight",
+    "disease_type": "Bacterial",
+    "treatment": [
+      "Streptocycline spray"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Use resistant varieties, balanced nitrogen"
+    ]
+  },
+  "Paddy_Blast": {
+    "crop": "Paddy",
+    "disease": "Blast",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Tricyclazole"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Avoid excess nitrogen, proper spacing"
+    ]
+  },
+  "Paddy_Brown_Spot": {
+    "crop": "Paddy",
+    "disease": "Brown Spot",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Mancozeb"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Seed treatment, proper drainage"
+    ]
+  },
+  "Paddy_Sheath_Blight": {
+    "crop": "Paddy",
+    "disease": "Sheath Blight",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Carbendazim"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Reduce plant density"
+    ]
+  },
+  "Paddy_Leaf_Scald": {
+    "crop": "Paddy",
+    "disease": "Leaf Scald",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Copper fungicide"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Field sanitation"
+    ]
+  },
+  "Paddy_Leaf_Smut": {
+    "crop": "Paddy",
+    "disease": "Leaf Smut",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Propiconazole"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Crop rotation"
+    ]
+  },
+  "Paddy_Powdery_Mildew": {
+    "crop": "Paddy",
+    "disease": "Powdery Mildew",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Sulfur spray"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Adequate air circulation"
+    ]
+  },
+  "Paddy_Rice_Hispa": {
+    "crop": "Paddy",
+    "disease": "Rice Hispa",
+    "disease_type": "Insect",
+    "treatment": [
+      "Chlorpyrifos"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Early planting, destroy stubble"
+    ]
+  },
+  "Paddy_Healthy": {
+    "crop": "Paddy",
+    "disease": "Healthy",
+    "disease_type": "Healthy",
+    "treatment": [
+      "No treatment needed"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Good agronomic practices"
+    ]
+  },
+  "Papaya_Anthracnose": {
+    "crop": "Papaya",
+    "disease": "Anthracnose",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Carbendazim"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Avoid fruit injury"
+    ]
+  },
+  "Papaya_Bacterial_Spot": {
+    "crop": "Papaya",
+    "disease": "Bacterial Spot",
+    "disease_type": "Bacterial",
+    "treatment": [
+      "Copper oxychloride"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Use disease-free seeds"
+    ]
+  },
+  "Papaya_Curl": {
+    "crop": "Papaya",
+    "disease": "Curl",
+    "disease_type": "Viral",
+    "treatment": [
+      "Remove infected plants"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Control insect vectors"
+    ]
+  },
+  "Papaya_Mosaic": {
+    "crop": "Papaya",
+    "disease": "Mosaic",
+    "disease_type": "Viral",
+    "treatment": [
+      "Rogue infected plants"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Vector control"
+    ]
+  },
+  "Papaya_Ringspot": {
+    "crop": "Papaya",
+    "disease": "Ringspot",
+    "disease_type": "Viral",
+    "treatment": [
+      "Remove infected plants"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Use resistant varieties"
+    ]
+  },
+  "Papaya_Mealybug_/_Whitefly": {
+    "crop": "Papaya",
+    "disease": "Mealybug / Whitefly",
+    "disease_type": "Insect",
+    "treatment": [
+      "Imidacloprid"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Biological control"
+    ]
+  },
+  "Papaya_Healthy": {
+    "crop": "Papaya",
+    "disease": "Healthy",
+    "disease_type": "Healthy",
+    "treatment": [
+      "No treatment needed"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Good field hygiene"
+    ]
+  },
+  "Pepper_Bacterial_Spot": {
+    "crop": "Pepper",
+    "disease": "Bacterial Spot",
+    "disease_type": "Bacterial",
+    "treatment": [
+      "Copper fungicide"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Use certified seeds"
+    ]
+  },
+  "Pepper_Foot_Rot": {
+    "crop": "Pepper",
+    "disease": "Foot Rot",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Metalaxyl"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Improve drainage"
+    ]
+  },
+  "Pepper_Pollu_Disease": {
+    "crop": "Pepper",
+    "disease": "Pollu Disease",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Mancozeb"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Crop rotation"
+    ]
+  },
+  "Pepper_Slow_Decline": {
+    "crop": "Pepper",
+    "disease": "Slow Decline",
+    "disease_type": "Soil-borne",
+    "treatment": [
+      "Trichoderma"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Soil solarization"
+    ]
+  },
+  "Pepper_Healthy": {
+    "crop": "Pepper",
+    "disease": "Healthy",
+    "disease_type": "Healthy",
+    "treatment": [
+      "No treatment needed"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Balanced fertilization"
+    ]
+  },
+  "Potato_Early_Blight": {
+    "crop": "Potato",
+    "disease": "Early Blight",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Chlorothalonil"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Crop rotation"
+    ]
+  },
+  "Potato_Late_Blight": {
+    "crop": "Potato",
+    "disease": "Late Blight",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Metalaxyl"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Avoid overhead irrigation"
+    ]
+  },
+  "Potato_Healthy": {
+    "crop": "Potato",
+    "disease": "Healthy",
+    "disease_type": "Healthy",
+    "treatment": [
+      "No treatment needed"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Proper crop management"
+    ]
+  },
+  "Tomato_Bacterial_Spot": {
+    "crop": "Tomato",
+    "disease": "Bacterial Spot",
+    "disease_type": "Bacterial",
+    "treatment": [
+      "Copper fungicide"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Avoid leaf wetness"
+    ]
+  },
+  "Tomato_Early_Blight": {
+    "crop": "Tomato",
+    "disease": "Early Blight",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Mancozeb"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Crop rotation"
+    ]
+  },
+  "Tomato_Late_Blight": {
+    "crop": "Tomato",
+    "disease": "Late Blight",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Metalaxyl"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Destroy infected plants"
+    ]
+  },
+  "Tomato_Leaf_Mold": {
+    "crop": "Tomato",
+    "disease": "Leaf Mold",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Chlorothalonil"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Improve ventilation"
+    ]
+  },
+  "Tomato_Septoria_Leaf_Spot": {
+    "crop": "Tomato",
+    "disease": "Septoria Leaf Spot",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Mancozeb"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Remove infected leaves"
+    ]
+  },
+  "Tomato_Spider_Mites": {
+    "crop": "Tomato",
+    "disease": "Spider Mites",
+    "disease_type": "Insect",
+    "treatment": [
+      "Abamectin"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Regular monitoring"
+    ]
+  },
+  "Tomato_Target_Spot": {
+    "crop": "Tomato",
+    "disease": "Target Spot",
+    "disease_type": "Fungal",
+    "treatment": [
+      "Azoxystrobin"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Avoid overcrowding"
+    ]
+  },
+  "Tomato_Tomato_Mosaic_Virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Mosaic Virus",
+    "disease_type": "Viral",
+    "treatment": [
+      "Remove infected plants"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Seed sanitation"
+    ]
+  },
+  "Tomato_Yellow_Leaf_Curl_Virus": {
+    "crop": "Tomato",
+    "disease": "Yellow Leaf Curl Virus",
+    "disease_type": "Viral",
+    "treatment": [
+      "Rogue plants, control whitefly"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Use resistant varieties"
+    ]
+  },
+  "Tomato_Healthy": {
+    "crop": "Tomato",
+    "disease": "Healthy",
+    "disease_type": "Healthy",
+    "treatment": [
+      "No treatment needed"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Good cultural practices"
+    ]
+  },
+  "Paddy_Crown_Sheath_Rot": {
+    "crop": "Paddy",
+    "disease": "Crown Sheath Rot",
+    "disease_type": NaN,
+    "treatment": [
+      "Use disease-free seeds",
+      " avoid water stagnation"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Maintain proper field drainage",
+      " remove infected plants"
+    ]
+  },
+  "Paddy_Narrow_Brown_Leaf_Spot": {
+    "crop": "Paddy",
+    "disease": "Narrow Brown Leaf Spot",
+    "disease_type": NaN,
+    "treatment": [
+      "Use resistant varieties",
+      " proper spacing"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Apply balanced fertilizers",
+      " remove affected leaves"
+    ]
+  },
+  "Paddy_Sheath_Rot": {
+    "crop": "Paddy",
+    "disease": "Sheath Rot",
+    "disease_type": NaN,
+    "treatment": [
+      "Avoid excess nitrogen",
+      " maintain field hygiene"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Spray recommended fungicide",
+      " remove infected tillers"
+    ]
+  },
+  "Paddy_Sheath_Spot": {
+    "crop": "Paddy",
+    "disease": "Sheath Spot",
+    "disease_type": NaN,
+    "treatment": [
+      "Use healthy seedlings",
+      " avoid dense planting"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Apply suitable fungicide",
+      " improve air circulation"
+    ]
+  },
+  "Paddy_Tungro_1": {
+    "crop": "Paddy",
+    "disease": "Tungro 1",
+    "disease_type": NaN,
+    "treatment": [
+      "Use resistant varieties",
+      " early planting"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Remove infected plants",
+      " control leafhopper vectors"
+    ]
+  },
+  "Paddy_Yellow_Mottle_1": {
+    "crop": "Paddy",
+    "disease": "Yellow Mottle 1",
+    "disease_type": NaN,
+    "treatment": [
+      "Use clean seeds",
+      " maintain field sanitation"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Rogue infected plants",
+      " manage insect vectors"
+    ]
+  },
+  "Papaya_Mite_Disease": {
+    "crop": "Papaya",
+    "disease": "Mite Disease",
+    "disease_type": NaN,
+    "treatment": [
+      "Spray recommended acaricides",
+      " remove heavily infested leaves"
+    ],
+    "recommended_measures": [
+      "nan"
+    ],
+    "preventive_measures": [
+      "Maintain field sanitation",
+      " avoid water stress",
+      " monitor regularly"
+    ]
+  }
+}
